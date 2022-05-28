@@ -20,6 +20,17 @@ html:root {
   font-size: 15px;
 }
 
+.size-wrapper {
+  width: calc(375px - 30px);
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
+}
+
 body {
   background: linear-gradient(var(--white), var(--gradient-background-bottom));
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -27,17 +38,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-nav,
-header,
-main {
-  margin: 1.067rem;
-}
-
-nav,
-footer {
-  align-self: stretch;
+  overflow-x: hidden;
 }
 
 /* Buttons */
@@ -72,8 +73,7 @@ a {
 
 /* Nav */
 nav {
-  display: flex;
-  justify-content: space-between;
+  padding-top: 1rem;
 }
 
 nav > img {
@@ -83,15 +83,17 @@ nav > img {
 
 /* Header */
 header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+  align-items: center;
+  margin: 1rem 0;
 }
 
 header > .header-text-and-button {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-items: center;
 }
 
 header > .header-text-and-button > h1 {
@@ -114,7 +116,6 @@ header > .header-text-and-button > a {
 
 header > .hero-img {
   content: url(../assets/image-hero-mobile.png);
-
   height: 301px;
   width: 327px;
 }
@@ -123,23 +124,20 @@ header > .hero-img {
 .card-grid {
   display: grid;
   grid-template-rows: 0.25fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
   background-color: var(--white);
-
   height: calc(283px - 56px);
   width: calc(343px - 64px);
-
   margin-bottom: 44px;
   padding: 28px 32px;
-
   border-radius: 10px;
-
   position: relative;
 }
 
@@ -165,7 +163,6 @@ header > .hero-img {
 .card > h3 {
   position: absolute;
   top: 56px;
-
   font-size: 1.333rem;
   font-weight: 800;
 }
@@ -173,7 +170,6 @@ header > .hero-img {
 .card > p {
   position: absolute;
   top: 97px;
-
   font-size: 1.067rem;
   font-weight: 500;
   line-height: 1.733rem;
@@ -183,20 +179,22 @@ header > .hero-img {
 .card > a {
   position: absolute;
   bottom: 32px;
-
   color: var(--pink-dark);
 }
 
 /* Footer */
 footer {
+  background-color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+footer > div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  padding: 0 16px;
-
-  height: 120px;
-  background-color: var(--blue);
 }
 
 footer > img {
@@ -204,43 +202,66 @@ footer > img {
   width: 89px;
 }
 
-@media (min-width: 400px) and (max-width: 768px) {
-  nav,
-  header,
-  main {
-    margin: 2.2rem;
+@media (min-width: 768px) {
+  .size-wrapper {
+    width: calc(768px - 30px);
   }
 
   header {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  header > .header-text-and-button {
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 60%;
+    grid-template-columns: 1fr 1fr;
     position: relative;
-    margin-bottom: 50px;
+    height: 723px;
+    margin: 130px 0 -175px;
   }
 
   header > .hero-img {
-    content: url(../assets/image-hero-tablet.webp);
+    content: url('../assets/image-hero-tablet.webp');
     position: absolute;
-    height: 80%;
-    width: 80%;
-    left: 55%;
-    top: -5%;
+    width: 695px;
+    height: 723px;
+    transform: translateX(45%) translateY(-35%);
   }
 
   .card-grid {
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    column-gap: 11px;
-    margin: 0;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
   }
 
-  .card {
-    width: 70%
+  .card:nth-child(1) {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 1440px) {
+  .size-wrapper {
+    width: calc(1110px);
+  }
+
+  header {
+    grid-template-columns: .65fr 1fr;
+    position: relative;
+    height: 937px;
+    margin: 190px 0 -300px;
+  }
+
+  header > .hero-img {
+    content: url('../assets/image-hero-desktop.webp');
+    position: absolute;
+    width: 992px;
+    height: 937px;
+    transform: translateX(50%) translateY(-40%);
+  }
+
+  .card-grid {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0px;
+    width: 1110px;
+    margin-bottom: 100px;
+  }
+
+  .card:nth-child(1) {
+    align-self: stretch;
   }
 }
